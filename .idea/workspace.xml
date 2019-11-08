@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee71f8e5-06ef-4501-916d-ba73f054858b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/scripts/markers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launch/pa3.launch" beforeDir="false" afterPath="$PROJECT_DIR$/launch/pa3.launch" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/aviator.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/aviator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/estimation.txt" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/estimation.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/markers_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/markers_example.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/markers_example.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

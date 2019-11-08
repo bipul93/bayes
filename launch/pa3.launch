@@ -1,5 +1,4 @@
 <launch>
   <node type="rviz" name="rviz" pkg="rviz" args="-d $(find ros_pa3)/include/config.rviz" />
   <node type="aviator.py" name="aviator" pkg="ros_pa3" output="screen" args="$(find ros_pa3)/scripts/grid.bag"/>
-<!--  <node type="markers_example.py" name="rviz_pub_example" pkg="ros_pa3" output="screen"/>-->
 </launch>
