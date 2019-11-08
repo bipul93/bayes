@@ -72,7 +72,7 @@ def display_line_list(points, publisher):
 
     # Mark type (http://wiki.ros.org/rviz/DisplayTypes/Marker)
     # LINE_LIST: It will draw a line between each pair of points, so 0-1, 2-3, 4-5, ...
-    marker.type = marker.LINE_STRIP
+    marker.type = marker.LINE_L
 
     # Marker action (Set this as ADD)
     marker.action = marker.ADD
@@ -213,8 +213,8 @@ def display_cube_list(points, publisher):
 
 def set_landmarks(points):
     global pub_line_list
-    pub_cube_list = rospy.Publisher('cube_list', Marker, queue_size=1)
-    pub_line_list = rospy.Publisher('line_list', Marker, queue_size=1)
+    pub_cube_list = rospy.Publisher('cube_list', Marker, queue_size=10)
+    pub_line_list = rospy.Publisher('line_list', Marker, queue_size=10)
     rate = rospy.Rate(10)  # 10hz
     count = 0
     while pub_cube_list.get_num_connections() < 1 or count < 5:
