@@ -9,6 +9,8 @@ from geometry_msgs.msg import Point
 pub_line_list = None
 marker = Marker()
 
+color = 1
+
 
 def init_line_marker():
     global marker
@@ -18,9 +20,9 @@ def init_line_marker():
     marker.action = marker.ADD
 
     # Marker scale
-    marker.scale.x = 0.025
-    marker.scale.y = 0.025
-    marker.scale.z = 0.025
+    marker.scale.x = 0.0125
+    marker.scale.y = 0.0125
+    marker.scale.z = 0.0125
 
     # Marker color (Make sure a=1.0 which sets the opacity)
     marker.color.a = 1.0

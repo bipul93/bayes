@@ -88,8 +88,8 @@ def read_bag():
     try:
         for topic, msg, t in bag.read_messages(topics=["Movements", "Observations"]):
             print("Running Tag: ", msg.timeTag)
-            if msg.timeTag > 4:
-                break
+            # if msg.timeTag > 4:
+            #     break
             if topic == "Movements":
                 # print("Movements", msg)
                 motion_model(msg.rotation1, msg.translation, msg.rotation2)
@@ -113,7 +113,7 @@ def motion_model(rot1, trans, rot2):
     rot1 = euler_from_quaternion((rot1.x, rot1.y, rot1.z, rot1.w))
     rot2 = euler_from_quaternion((rot2.x, rot2.y, rot2.z, rot2.w))
 
-    cell = (numpy.where(grid > 0.0001))
+    cell = (numpy.where(grid > 0.000001))
 
     total = 0
     for cell_index in range(cell[0].shape[0]):
@@ -130,11 +130,11 @@ def motion_model(rot1, trans, rot2):
             rot2_cap = normalize(k1 - k2 - rot1_cap)
 
             p1 = normal_pdf(rot1_cap, rot1[2], (math.pi / 12) + 0.2)
-            p2 = normal_pdf(trans_cap, trans, 20)
+            p2 = normal_pdf(trans_cap, trans, 25)
             p3 = normal_pdf(rot2_cap, rot2[2], (math.pi / 12) + 0.2)
 
             prob = grid[cell[0][cell_index], cell[1][cell_index], cell[2][cell_index]] * p1 * p2 * p3
-            grid[ind[0], ind[1], ind[2]] = grid[ind[0], ind[1], ind[2]] + prob
+            grid[ind[0], ind[1], ind[2]] += prob
             total = total + prob
     grid = grid / total
 
@@ -153,10 +153,10 @@ def sensor_model(tag_num, tag_range, tag_bearing):
         k2 = normalize(ind[2] * (math.pi / 6) + (math.pi / 12))
 
         trans_cap = numpy.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
-        rot1_cap = normalize(math.atan2(y1 - y2, x1 - x2) - k2)
+        rot1_cap = normalize(math.atan2(y2 - y1, x2 - x1) - k2)
 
-        p1 = normal_pdf(rot1_cap, bearing[2], (math.pi / 12) + 0.08)
-        p2 = normal_pdf(trans_cap, tag_range * 100, 15)
+        p1 = normal_pdf(rot1_cap, bearing[2], (math.pi / 12) + 0.05)
+        p2 = normal_pdf(trans_cap, tag_range * 100, 12)
 
         prob = grid[ind[0], ind[1], ind[2]] * p1 * p2
         grid[ind[0], ind[1], ind[2]] = prob
