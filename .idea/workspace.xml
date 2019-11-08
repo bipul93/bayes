@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee71f8e5-06ef-4501-916d-ba73f054858b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/config.rviz" beforeDir="false" afterPath="$PROJECT_DIR$/include/config.rviz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/aviator.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/aviator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/estimation.txt" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/estimation.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/markers_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/markers_example.py" afterDir="false" />

@@ -72,34 +72,34 @@ def display_line_list(points, publisher):
 
     # Mark type (http://wiki.ros.org/rviz/DisplayTypes/Marker)
     # LINE_LIST: It will draw a line between each pair of points, so 0-1, 2-3, 4-5, ...
-    marker.type = marker.LINE_L
-
-    # Marker action (Set this as ADD)
-    marker.action = marker.ADD
-
-    # Marker scale
-    marker.scale.x = 0.025
-    marker.scale.y = 0.025
-    marker.scale.z = 0.025
-
-    # Marker color (Make sure a=1.0 which sets the opacity)
-    marker.color.a = 1.0
-    marker.color.r = 1.0
-    marker.color.g = 1.0
-    marker.color.b = 0.0
-
-    # Marker orientaiton (Set it as default orientation in quaternion)
-    marker.pose.orientation.x = 0.0
-    marker.pose.orientation.y = 0.0
-    marker.pose.orientation.z = 0.0
-    marker.pose.orientation.w = 1.0
-
-    # Marker position
-    # The position of the marker. In this case it the COM of all the points
-    # Set this as 0,0,0
-    marker.pose.position.x = 0.0
-    marker.pose.position.y = 0.0
-    marker.pose.position.z = 0.0
+    # marker.type = marker.LINE_STRIP
+    #
+    # # Marker action (Set this as ADD)
+    # marker.action = marker.ADD
+    #
+    # # Marker scale
+    # marker.scale.x = 0.025
+    # marker.scale.y = 0.025
+    # marker.scale.z = 0.025
+    #
+    # # Marker color (Make sure a=1.0 which sets the opacity)
+    # marker.color.a = 1.0
+    # marker.color.r = 1.0
+    # marker.color.g = 1.0
+    # marker.color.b = 0.0
+    #
+    # # Marker orientaiton (Set it as default orientation in quaternion)
+    # marker.pose.orientation.x = 0.0
+    # marker.pose.orientation.y = 0.0
+    # marker.pose.orientation.z = 0.0
+    # marker.pose.orientation.w = 1.0
+    #
+    # # Marker position
+    # # The position of the marker. In this case it the COM of all the points
+    # # Set this as 0,0,0
+    # marker.pose.position.x = 0.0
+    # marker.pose.position.y = 0.0
+    # marker.pose.position.z = 0.0
 
     # Marker line points
     # marker.points = []

@@ -5,15 +5,6 @@ from os import sys, path
 from tf.transformations import euler_from_quaternion
 
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
-#
-# dirpath = os.getcwd()
-# print("current directory is : " + dirpath)
-# foldername = os.path.basename(dirpath)
-# print("Directory name is : " + foldername)
-# scriptpath = os.path.realpath(__file__)
-# print("Script path is : " + scriptpath)
-# print("Script path is : " + path.dirname(scriptpath))
-# print(path.dirname())
 
 import rosbag
 import rospy
@@ -21,7 +12,7 @@ import numpy
 import math
 from scipy.stats import norm
 
-from scripts.markers_example import test, set_landmarks, set_line_points
+from scripts.markers_example import set_landmarks, set_line_points
 
 # Global parameters
 
@@ -53,7 +44,7 @@ for m, x in enumerate(neighbour_nodes):
 landmarks = [(1.25, 5.25), (1.25, 3.25), (1.25, 1.25), (4.25, 1.25), (4.25, 3.35), (4.25, 5.25)]
 bag = rosbag.Bag(rospy.myargv(argv=sys.argv)[1])
 
-line_points = []
+# line_points = []
 
 estimation = []
 
@@ -82,14 +73,15 @@ def write_to_file():
             f.write("P: (" + str(estimation[i][0]) + ", " + str(estimation[i][1]) + ". " + str(
                 round(angle * to_degree, 1)) + ")\n")
     f.close()
+    print("Output written into file estimation.txt")
 
 
 def read_bag():
     global grid, line_points
     # try:
     for topic, msg, t in bag.read_messages(topics=["Movements", "Observations"]):
-        print(msg.timeTag)
-        # if msg.timeTag > 100:
+        print("Time tag: ", msg.timeTag)
+        # if msg.timeTag > 4:
         #     break
         if topic == "Movements":
             # print("Movements", msg)
@@ -103,6 +95,7 @@ def read_bag():
         # print(index)
         point = (translation(index[0], index[1]))
         # line_points.append((float(point[0])/100, float(point[1])/100))
+        # set_line_points(line_points)
         set_line_points((float(point[0]) / 100, float(point[1]) / 100))
         estimation.append((float(point[0]) / 100, float(point[1]) / 100, index[2]))
     # test()
@@ -125,7 +118,7 @@ def motion_model(rot1, trans, rot2):
     rot2 = euler_from_quaternion((rot2.x, rot2.y, rot2.z, rot2.w))
 
     # copy_grid = numpy.copy(grid)
-    cell = (numpy.where(grid > 0.05))
+    cell = (numpy.where(grid > 0.00001))
     # print(cell)
     total = 0
     for cell_index in range(cell[0].shape[0]):
@@ -199,10 +192,14 @@ def sensor_model(tag_num, tag_range, tag_bearing):
 
 
 def init():
+    global grid
     rospy.init_node("aviator", anonymous=False)
     rate = rospy.Rate(10)  # 10hz
     set_landmarks(landmarks)
-    print("read bag")
+    print("---------------------------------------------------------------------------------------------------")
+    print("Grid Shape: ", grid.shape)
+    print("Belief Threshold: ", 0.000001)
+    print("---------------------------------------------------------------------------------------------------")
     read_bag()
     rospy.spin()
 
