@@ -14,7 +14,7 @@ color = 1
 
 def init_line_marker():
     global marker
-    marker.header.frame_id = "/map"
+    marker.header.frame_id = "map"
     marker.type = marker.LINE_STRIP
     # Marker action (Set this as ADD)
     marker.action = marker.ADD
@@ -65,7 +65,7 @@ def display_cube_list(points, publisher):
     # The coordinate frame in which the marker is published.
     # Make sure "Fixed Frame" under "Global Options" in the Display panel
     # in rviz is "/map"
-    cube_marker.header.frame_id = "/map"
+    cube_marker.header.frame_id = "map"
     cube_marker.header.stamp = rospy.Time.now()
 
     # Mark type (http://wiki.ros.org/rviz/DisplayTypes/Marker)
@@ -108,7 +108,6 @@ def display_cube_list(points, publisher):
         marker_point.y = point[1]
         marker_point.z = 0.0
         cube_marker.points.append(marker_point)  # Append the marker_point to the marker.points list
-
     # Publish the Marker using the apporopriate publisher
     publisher.publish(cube_marker)
 
@@ -119,7 +118,8 @@ def set_landmarks(points):
     pub_line_list = rospy.Publisher('line_list', Marker, queue_size=10)
     rate = rospy.Rate(10)  # 10hz
     count = 0
-    while pub_cube_list.get_num_connections() < 1 or count < 5:
+    while pub_cube_list.get_num_connections() < 1 or count < 6:
+        print(pub_cube_list.get_num_connections(), count)
         display_cube_list(points, pub_cube_list)
         count += 1
         rate.sleep()

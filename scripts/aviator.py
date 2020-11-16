@@ -23,10 +23,10 @@ to_degree = 57.2958
 grid_dimension = 700  # type: int
 cell_size = 20
 heading_discretization = 30  # degrees
-discretization_range = 360 / heading_discretization
+discretization_range = int(360 / heading_discretization)
 
 # shape should be (35,35,4)
-grid = numpy.zeros((int(grid_dimension / cell_size), grid_dimension / cell_size, discretization_range))
+grid = numpy.zeros((int(grid_dimension / cell_size), int(grid_dimension / cell_size), discretization_range))
 
 # Bot's initial pos is (12,28) and 200.52 degrees. our index starts at 0.
 grid[11, 27, 6] = 0.8
